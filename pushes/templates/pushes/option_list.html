@@ -1,0 +1,16 @@
+{% extends 'adminlte/base.html' %}
+
+{% block content %}
+    <h1>Options List</h1>
+    {% if option_list %}
+    <ul>
+    {% for option in option_list %}
+        <li>
+        <a href="{% url 'option_detail' option.pk %}">{{ option.name }}</a> 
+        </li>
+    {% endfor %}
+    </ul>
+    {% else %}
+    <p>There are no options available.</p>
+    {% endif %}       
+{% endblock %}

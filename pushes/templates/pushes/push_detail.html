@@ -1,0 +1,42 @@
+{% extends 'adminlte/base.html' %}
+
+{% block content %}
+
+  <h1>Заголовок: {{ push.title }}</h1>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-2"><h4><strong>Текст сообщения:</strong></h4></div>
+      <div class="col-lg-3"><h4>{{ push.text }}</h4></div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2"><h4><strong>Дата создания:</strong></h4></div>
+      <div class="col-lg-3"><h4>{{ push.creation_date }}</h4></div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2"><h4><strong>Дата отправки:</strong> </p></div>
+      <div class="col-lg-3"><h4>{{ push.send_date }}</h4></div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2"><h4><strong>Статус отправки:</strong></h4> </div>
+      <div class="col-lg-3"><h4>{{ push.is_sent }}</h4></div>
+    </div> 
+    <div class="row">
+      <div class="col-lg-2"></div>
+      <div class="col-lg-3"></div>
+    </div> 
+
+    <div class="row">
+      <div class="col-lg-2">
+        <a class="btn btn-primary btn-block" href="{% url 'push_send' push.pk %}">Редактировать</a>
+      </div>
+      <div class="col-lg-2">
+        <a class="btn btn-primary btn-block" href="{% url 'push_delete' push.pk %}">Удалить</a>
+      </div>
+    </div>
+    
+  </div>
+
+  
+  
+{% endblock %}

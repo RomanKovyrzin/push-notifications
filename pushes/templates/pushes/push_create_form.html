@@ -1,0 +1,131 @@
+{% extends 'adminlte/base.html' %}
+{% load static %}
+
+
+{% block content %}
+{% block logo_text %} <h2><b>Пуш уведомление</b></h2> {% endblock %}
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-lg-7">
+      <form action="" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <div class="row">
+          <div class="col-lg-10">
+            <div class="form-group">
+              {{ form.title.errors }}
+              {{ form.title.label_tag }} <br>
+              {{ form.title }}
+            </div>
+          </div>
+        </div>
+    
+        <div class="row">
+          <div class="col-lg-10">
+            <div class="form-group">
+              {{ form.text.errors }}
+              {{ form.text.label_tag }} <br>
+              {{ form.text }}
+            </div>
+          </div>
+        </div>
+    
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="form-group">
+              {{ form.send_date.errors }}
+              {{ form.send_date.label_tag }} <br>
+              {{ form.send_date }}
+            </div>
+          </div>
+        </div>
+    
+        {% block buttons %}
+
+        <div class="row">
+          <div class="form-group">
+            <div class="col-lg-2">
+              <input class="btn btn-primary btn-block" type="submit" value="Отправить" name="send">
+            </div>
+            <div class="col-lg-2">
+              <input class="btn btn-primary btn-block" type="submit" value="Сохранить" name="save">
+            </div>
+          </div>
+        </div>
+        
+        {% endblock buttons %}
+    
+      </form>
+    </div>
+
+    <div class="col-lg-5">
+      <div class="row">
+        <div class="col">
+          <h2><b>Предпросмотр устройств</b></h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <h2>iOS</h2>
+        </div>  
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card" style="max-width:72%;">
+            <img class="img-fluid" src="{% static 'images/iphonex.png' %}" alt="Card image" style="width:100%;"></img> 
+            <div class="card-body" style="position: absolute; top: 30%; left: 6%;">
+              <h5 id="title">Title</h4>
+              <textarea id="text" rows="4" cols="50">Text</textarea>
+            </div>   
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <h2>Android</h2>
+        </div>  
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="card" style="max-width:72%;">
+            <img class="img-fluid" src="{% static 'images/iphonex.png' %}" alt="Card image" style="width:100%;"></img> 
+            <div class="card-body" style="position: absolute; bottom: 4%; left: 6%;">
+              <h5 id="title1">Title</h4>
+              <textarea id="text1" rows="4" cols="50">Text</textarea>
+            </div>   
+          </div>    
+        </div>
+      </div>
+
+    </div>
+    
+  </div>
+</div>
+
+<!-- Display form imput title and text on mobile device vidget -->
+<script type="text/javascript">
+  function displayTitle(title) {
+    var display = document.getElementById('title');
+    var display1 = document.getElementById('title1');
+    display.innerHTML = title;
+    display1.innerHTML = title;
+  }
+
+  function displayText(text) {
+    var display = document.getElementById('text');
+    var display1 = document.getElementById('text1');
+    display.innerHTML = text;
+    display1.innerHTML = text;
+  }
+
+</script>
+
+
+
+{% endblock content %}

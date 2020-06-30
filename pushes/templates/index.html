@@ -1,0 +1,56 @@
+{% extends 'adminlte/base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <h1>Push Notifications Home Page</h1>
+  <h3>Notifications content</h2>
+  
+  <ul>
+    <li><h4><strong><a href="{% url 'pushes' %}">Pushes:</a></strong> {{ num_pushes }} (unsended: {{ unsended.count }})</h4></li>
+    <li><h4><strong><a href="{% url 'options' %}">Options available:</a></strong> {{ num_options }}</h4></li>
+    <li><h4><strong>Total number of sent pushes:</strong> {{ total_count }}</h4></li>
+  </ul>
+
+  <!-- Sesion Start -->
+  <p>
+    You have visited this page {{ num_visits }}
+    {% if num_visits == 1 %} 
+      timeh4>{{ push.is_sent }}</h4>
+    {% else %} 
+      times
+    {% endif %}.
+  <!-- Session End -->
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-3">
+        <a class="btn btn-primary btn-block" href="{% url 'push_create' %}">Create PUSH</a>
+      </div>
+    </div>
+  </div> 
+ 
+ 
+
+  <!-- Pagination Start -->
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+  <!-- Pagination End -->
+</div>
+  
+  
+{% endblock %}
+
+

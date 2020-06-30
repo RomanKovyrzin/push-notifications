@@ -1,0 +1,35 @@
+{% extends "adminlte/login.html" %}
+
+{% block logo_text %}<b>Instories</b>PUSH{% endblock %}
+
+
+{% block login_form %}
+  <form action="{% url 'login' %}" method="post">
+      {% csrf_token %}
+      {% if message %}
+          <p class="login-box-msg" style="color: red;">{{ message }}</p>
+      {% endif %}
+      <div class="form-group has-feedback">
+          <input name="username" class="form-control" placeholder="Username">
+          <span class="glyphicon glyphicon-user form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+          <input type="password" name="password" class="form-control" placeholder="Password">
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 form-check">
+          <input type="checkbox" class="form-check-input" id="remember_me" name="remember_me">
+          <label class="form-check-label" for="remember_me">Remember me</label>
+        </div>
+        <div class="col-xs-8">
+            {% block login_form_links %}
+              <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+            {% endblock %}
+        </div>
+        <div class="col-xs-4">
+            <button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
+        </div>
+      </div>
+  </form>
+{% endblock login_form %}

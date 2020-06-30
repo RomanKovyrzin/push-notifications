@@ -1,0 +1,65 @@
+{% extends 'adminlte/base.html' %}
+
+{% block content %}
+    <h1>Список пуш-уведомлений</h1>
+    {% if push_list %}
+    
+    <table class="table table-hover table-responsive">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Заголовок</th>
+            <th scope="col">Дата создания</th>
+            <th scope="col">Дата отправки</th>
+            <th scope="col">Статус</th>
+            <th scope="col" colspan="2">Действие</th>
+          </tr>
+        </thead>
+        <tbody>
+         
+         {% for push in push_list %}  
+          <tr>
+            <th scope="row">{{push.id}}</th>
+            <td><a href="{{ push.get_absolute_url }}">{{ push.title }}</a></td>
+            <td>{{push.creation_date}}</td>
+            <td>
+                {% if push.send_date %}
+                    {{push.send_date}}
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+            <td>{% if push.is_sent %}
+                    отправлено
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+            <td>
+                {% if push.is_sent == False %} 
+                    <a href="{% url 'push_send' push.pk %}">Отправить</a> 
+                {% else %}
+                    <a href="{% url 'push_send' push.pk %}">Редактировать</a>
+                {% endif %}
+            </td>
+            <td><a href="{% url 'push_delete' push.pk %}">Удалить</a> </td>
+          </tr>
+         {% endfor %}
+        </tbody>
+      </table>
+
+    {% else %}
+    <p>There are no pushes available.</p>
+    {% endif %} 
+
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-3">
+            <a class="btn btn-primary btn-block" href="{% url 'push_create' %}">Создать сообщение</a>
+          </div>
+        </div>
+      </div> 
+    
+{% endblock %}
+
+

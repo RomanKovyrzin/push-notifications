@@ -1,0 +1,14 @@
+{% extends "adminlte/login.html" %}
+
+{% block login_form %}
+
+<h1>Delete Push</h1>
+
+<p>Are you sure you want to delete the message: <br> "{{ push }}"?</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="Yes, delete.">
+</form>
+
+{% endblock login_form %}
