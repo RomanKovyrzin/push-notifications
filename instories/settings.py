@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '$fr)63#_g&^-i-kk0*-!f^6k=)ep7n
 # DEBUG = True
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ['push-notifications.herokuapp.com', 'localhost', '127.0.0.1', '[::1]']
+ALLOWED_HOSTS = ['push-instories.herokuapp.com', 'localhost', '127.0.0.1', '[::1]']
 
 
 # Application definition
